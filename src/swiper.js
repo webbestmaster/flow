@@ -27,11 +27,17 @@ type SwiperOptionsType = {|
     },
 |};
 
+declare class Swiper {
+    constructor(node: HTMLElement, options: SwiperOptionsType): Swiper,
+    destroy(deleteInstance?: boolean, cleanStyles: ?boolean): mixed, // default deleteInstance = true, cleanStyles = true
+    slideTo(index: number, speed: number, runCallbacks: () => void): mixed,
+    activeIndex: number,
+}
+
 declare module 'swiper' {
-    declare export default class Swiper {
-        constructor(node: HTMLElement, options: SwiperOptionsType): Swiper,
-        destroy(deleteInstance?: boolean, cleanStyles: ?boolean): mixed, // default deleteInstance = true, cleanStyles = true
-        slideTo(index: number, speed: number, runCallbacks: () => void): mixed,
-        activeIndex: number,
-    }
+    declare export default typeof Swiper;
+}
+
+declare module 'swiper/dist/js/swiper.min' {
+    declare export default typeof Swiper;
 }
